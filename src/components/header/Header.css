@@ -1,5 +1,8 @@
 .header {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px 0px;
+    position: sticky;
+    top: 0;
+    background: #1D232A;
 }
 
 .header__container {

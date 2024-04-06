@@ -11,4 +11,8 @@ export default class API {
     async getCategories() {
         return this.get("categories.php");
     }
+
+    async getRandom() {
+        return this.get("random.php");
+    }
 }

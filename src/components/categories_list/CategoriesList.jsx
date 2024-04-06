@@ -5,7 +5,7 @@ import './CategoriesList.css';
 import {ApiContext} from "../../contexts.js";
 
 import {useContext, useEffect, useState} from 'react';
-import CategoryItem from "../catergory/CategoryItem.jsx";
+import CategoryItem from "../catergory_item/CategoryItem.jsx";
 import Container from "../container/Container.jsx";
 
 
@@ -15,19 +15,22 @@ function CategoriesList() {
 
     useEffect(() => {
         api.getCategories()
-            .then(({categories}) => setCategories(categories));
+            .then(({categories}) => {
+                return setCategories(categories.sort((a, b) => a.strCategory.localeCompare(b.strCategory)));
+            });
     }, [api]);
 
     return (
-        <Container>
+        <div className="categories">
+            <h2 className="categories-title">Categories</h2>
             <ul  className="categories-list">
                 {
-                    categories.map((category) => (
-                        <CategoryItem key={category.idCategory} {...category}/>
+                    categories.map(({idCategory, strCategory: name, strCategoryThumb: thumb}) => (
+                        <CategoryItem key={idCategory} name={name} thumb={thumb} />
                     ))
                 }
             </ul>
-        </Container>
+        </div>
     );
 }
 
