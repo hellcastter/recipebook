@@ -2,6 +2,7 @@ import 'react';
 
 import Container from '../container/Container.jsx';
 
+import logo from '../../assets/logo.png';
 import './Footer.css';
 
 function Footer() {
@@ -9,6 +10,7 @@ function Footer() {
         <footer>
             <Container className="footer__container">
                 <div className="footer__logo">
+                    <img src={logo} width={50} alt="Recipe book"/>
                     recipebook
                 </div>
 

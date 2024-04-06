@@ -3,8 +3,8 @@
 }
 
 .header__container {
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 
     display: flex;
     justify-content: space-between;
@@ -16,11 +16,12 @@
     justify-content: center;
     align-items: center;
     font-weight: 900;
-    font-size: 32px;
+    font-size: 25px;
 }
 
 .header__logo img {
     margin-right: 15px;
+    width: 50px;
 }
 
 .header__nav ul {
@@ -33,5 +34,10 @@
 }
 
 .header__nav li {
-    margin: 0 10px;
+    margin: 0 15px;
+}
+
+.header__nav a {
+    font-weight: 500;
+    font-size: 14px;
 }
