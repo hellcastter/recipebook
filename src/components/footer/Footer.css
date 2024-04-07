@@ -1,14 +1,17 @@
 .footer {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px 0px;
+    background-color: #15191E;
+    width: 100%;
 }
 
 .footer__container {
     padding-top: 15px;
     padding-bottom: 15px;
-
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
+    width: 100%;
+    background-color: #15191E;
 }
 
 .footer__logo {
@@ -17,6 +20,7 @@
     align-items: center;
     font-weight: 900;
     font-size: 25px;
+    margin-right: auto;
 }
 
 .footer__logo img {
@@ -29,8 +33,11 @@
     padding: 0;
     list-style: none;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex;
+    text-align: right;
+    gap: .5rem;
 }
 
 .footer__nav li {
