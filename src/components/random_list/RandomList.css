@@ -25,3 +25,27 @@
     margin-top: 7px;
     margin-left: 5px;
 }
+
+.refresh-btn {
+    padding: 0;
+    border: none;
+    background: transparent;
+    width: 25px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.refresh-btn--animate {
+    animation: rotating 1s linear infinite;
+}
+
+@-webkit-keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

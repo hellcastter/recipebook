@@ -35,7 +35,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex;
     text-align: right;
     gap: .5rem;
 }
@@ -47,4 +46,9 @@
 .footer__nav a {
     font-weight: 500;
     font-size: 14px;
+}
+
+.footer__copy {
+    text-align: center;
+    margin-bottom: 15px;
 }

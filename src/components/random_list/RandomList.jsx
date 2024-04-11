@@ -1,9 +1,11 @@
 import 'react';
 import {useContext, useEffect, useState} from "react";
 import {ApiContext} from "../../contexts.js";
-// import CategoryItem from "../catergory_item/CategoryItem.jsx";
 
 import "./RandomList.css";
+import useSWR from "swr";
+
+import refresh from '../../assets/refresh.svg';
 
 function RandomItem({name, thumb}) {
     return (
@@ -14,29 +16,47 @@ function RandomItem({name, thumb}) {
     );
 }
 
+
 function RandomList({items = 10}) {
     const api = useContext(ApiContext);
-    const [randomList, setRandomList] = useState([]);
 
-    useEffect(() => {
-        setRandomList([]);
+    const { data , mutate, error, isLoading, isValidating } = useSWR('meals', async () => {
+        const data = [];
 
         for (let i = 0; i < items; i++) {
-            api.getRandom().then(({meals}) => {
-                const meal = meals[0];
-                const {idMeal: id, strMeal: name, strMealThumb: thumb} = meal;
+            const result = await api.getRandom();
+            const meals = result.meals[0];
 
-                setRandomList((randomList) => [...randomList, {id, name, thumb}]);
-            });
-        }
-    }, []);
+            data.push({id: meals.idMeal, name: meals.strMeal, thumb: meals.strMealThumb});
+         }
+
+        return data;
+    }, {revalidateOnFocus: false});
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>
+    }
 
     return (
         <div className="categories">
-            <h2 className="categories-title">{items} random dishes</h2>
+            <h2 className="categories-title">
+                <span>{items} random dishes</span>
+                <button
+                    className={`refresh-btn ${isValidating && 'refresh-btn--animate'}`}
+                    onClick={() => mutate()}
+                    disabled={isValidating}
+                >
+                    <img src={refresh} alt="Refresh" />
+                </button>
+            </h2>
+
             <ul className="categories-list">
                 {
-                    randomList.map(({id, name, thumb}) => <RandomItem key={id} name={name} thumb={thumb} />)
+                    data.map(({id, name, thumb}) => <RandomItem key={id} name={name} thumb={thumb} />)
                 }
             </ul>
         </div>
