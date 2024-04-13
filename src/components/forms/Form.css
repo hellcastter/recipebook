@@ -1,4 +1,4 @@
-.login-container {
+.form-container {
     padding: 40px 0;
 }
 
@@ -6,14 +6,14 @@ h2 {
     text-align: center;
 }
 
-.login-form {
+.class-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
 }
 
-.login-form div {
+.class-form div {
     display: flex;
     flex-direction: column;
     gap: 5px;

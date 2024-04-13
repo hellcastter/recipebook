@@ -6,10 +6,11 @@ import Home from './pages/Home';
 import CalorieCounter from './pages/CalorieCounter';
 import Recipes from './pages/Recipes';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import NotFoundPage from './pages/NotFoundPage'
 
 import API from "./api.js";
-import {ApiContext} from "./contexts.js";
+import { ApiContext } from "./contexts.js";
 
 import './index.css';
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/Login",
     element: <Login />,
+  },
+  {
+    path: "/Register",
+    element: <Register />,
   },
 ]);
 

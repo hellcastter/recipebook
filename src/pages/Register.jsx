@@ -6,18 +6,18 @@ import './App.css'
 import Header from "../components/header/Header.jsx";
 import Footer from "../components/footer/Footer.jsx";
 import Container from "../components/container/Container.jsx";
-import LoginForm from "../components/forms/LoginForm.jsx"
+import RegisterForm from "../components/forms/RegisterForm.jsx"
 
-const Login = () => {
+const Register = () => {
     return (
         <>
             <Container>
                 <Header/>
-                <LoginForm />
+                <RegisterForm />
             </Container>
             <Footer/>
         </>
     )
 }
 
-export default Login;
+export default Register;
