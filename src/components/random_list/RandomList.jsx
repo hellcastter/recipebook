@@ -1,37 +1,29 @@
 import 'react';
-import {useContext, useEffect, useState} from "react";
-import {ApiContext} from "../../contexts.js";
+import { useContext } from "react";
+import { ApiContext } from "../../contexts.js";
 
 import "./RandomList.css";
 import useSWR from "swr";
 
 import refresh from '../../assets/refresh.svg';
-
-function RandomItem({name, thumb}) {
-    return (
-        <li className="dish-item">
-            <img src={thumb} alt={name} />
-            <p>{name}</p>
-        </li>
-    );
-}
+import DishItem from "../dish_item/DishItem.jsx";
+import PropTypes from "prop-types";
 
 
-function RandomList({items = 10}) {
+function RandomList({ items = 10 }) {
     const api = useContext(ApiContext);
 
-    const { data , mutate, error, isLoading, isValidating } = useSWR('meals', async () => {
+    const { data, mutate, error, isLoading, isValidating } = useSWR('meals', async () => {
         const data = [];
 
         for (let i = 0; i < items; i++) {
-            const result = await api.getRandom();
-            const meals = result.meals[0];
+            const { idMeal: id, strMeal: name, strMealThumb: thumb } = await api.getRandom();
 
-            data.push({id: meals.idMeal, name: meals.strMeal, thumb: meals.strMealThumb});
-         }
+            data.push({ id, name, thumb });
+        }
 
         return data;
-    }, {revalidateOnFocus: false});
+    }, { revalidateOnFocus: false });
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -56,11 +48,15 @@ function RandomList({items = 10}) {
 
             <ul className="categories-list">
                 {
-                    data.map(({id, name, thumb}) => <RandomItem key={id} name={name} thumb={thumb} />)
+                    data.map(({ id, name, thumb }) => <DishItem key={id} id={id} name={name} thumb={thumb} />)
                 }
             </ul>
         </div>
     );
 }
+
+RandomList.propTypes = {
+    items: PropTypes.number,
+};
 
 export default RandomList;

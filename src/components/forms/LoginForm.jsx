@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 
 import './Form.css'
 
 import { encodePassword, decodePassword } from './PasswordEncDec';
+import {UserContext} from "../../contexts.js";
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const {user, setUser} = useContext(UserContext);
+    const userNavigate = useNavigate();
+
+    if (user) {
+        userNavigate('/');
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -29,7 +37,7 @@ function LoginForm() {
     
                     if (password === decodedPassword) {
                         console.log('Login successful');
-                        alert('Login successful');
+                        setUser(username);
                     } else {
                         console.error('Incorrect password');
                         alert('Incorrect password');

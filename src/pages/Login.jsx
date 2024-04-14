@@ -1,6 +1,3 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
 import './App.css'
 
 import Header from "../components/header/Header.jsx";
@@ -12,10 +9,10 @@ const Login = () => {
     return (
         <>
             <Container>
-                <Header/>
+                <Header />
                 <LoginForm />
             </Container>
-            <Footer/>
+            <Footer />
         </>
     )
 }

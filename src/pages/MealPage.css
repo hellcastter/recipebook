@@ -1,0 +1,24 @@
+.meal__wrapper {
+    display: flex;
+    margin-top: 50px;
+}
+
+
+
+.meal__instuction {
+    margin: 0 auto;
+    margin: 20px 0;
+    white-space: pre-line;
+}
+
+.meal__tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.meal__tag {
+    background-color: #050617;
+    padding: 7px 9px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}

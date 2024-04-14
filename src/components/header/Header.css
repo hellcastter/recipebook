@@ -25,6 +25,10 @@
     font-size: 25px;
 }
 
+.header__logo:hover {
+    text-decoration: none;
+}
+
 .header__logo img {
     margin-right: 15px;
     width: 50px;

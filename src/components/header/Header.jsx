@@ -5,22 +5,31 @@ import Container from '../container/Container.jsx';
 
 import logo from '../../assets/logo.png';
 import './Header.css';
+import {useContext} from "react";
+import {UserContext} from "../../contexts.js";
 
 function Header() {
+    const {user, setUser} = useContext(UserContext);
+
     return (
         <header className="header">
             <Container className="header__container">
-                <div className="header__logo">
+                <Link to="/" className="header__logo">
                     <img src={logo} alt="Recipe book"/>
                     recipebook
-                </div>
+                </Link>
 
                 <nav className="header__nav">
                     <ul>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/Recipes">Recipes</Link></li>
                         <li><Link to="/CalorieCounter">Calorie counter</Link></li>
-                        <li><Link to="/Login">Login</Link></li>
+
+                        {
+                            user ?
+                                <li><Link onClick={() => setUser(null)}>Logout</Link></li> :
+                                <li><Link to="/Login">Login</Link></li>
+                        }
                     </ul>
                 </nav>
             </Container>

@@ -23,6 +23,10 @@
     margin-right: auto;
 }
 
+.footer__logo:hover {
+    text-decoration: none;
+}
+
 .footer__logo img {
     margin-right: 15px;
     width: 50px;

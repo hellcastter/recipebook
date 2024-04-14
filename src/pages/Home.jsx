@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <>
             <Container>
-                <Header/>
+                <Header />
 
                 <img src={hero} alt="hero" className="hero" />
 
@@ -25,7 +25,7 @@ const Home = () => {
                 <RandomList items={10} />
 
             </Container>
-            <Footer/>
+            <Footer />
         </>
     )
 }

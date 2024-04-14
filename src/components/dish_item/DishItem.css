@@ -1,0 +1,31 @@
+.dish-item {
+    width: 288px;
+    display: block;
+    flex-shrink: 0;
+    margin: 0 5px;
+    color: #fff;
+    overflow: hidden;
+
+    background-size: cover;
+}
+
+.dish-item__link:hover {
+    text-decoration: none;
+}
+
+.dish-item img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 180px;
+    display: block;
+    border-radius: 20px;
+
+}
+
+.dish-item p {
+    text-shadow: rgba(0, 0, 0, .5) 0 0 10px;
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin-top: 7px;
+    margin-left: 5px;
+}

@@ -4,6 +4,34 @@
       "id": "104f",
       "username": "kostya",
       "password": "MjIyMg=="
+    },
+    {
+      "id": "9992",
+      "username": "muryn.pn",
+      "password": "MTIzMTIz"
+    }
+  ],
+  "comments": [
+    {
+      "id": "123",
+      "username": "muryn.pn",
+      "comment": "Absolutely love Tandoori chicken! The perfect blend of spices gives it such a rich and flavorful taste. Whether it's grilled or baked, it always turns out tender and juicy. Definitely a favorite dish for any occasion!",
+      "post_id": "52806",
+      "date": "2019-12-12T12:12:12"
+    },
+    {
+      "id": "1231",
+      "username": "muryn.pn",
+      "comment": "Hello, World!",
+      "post_id": "52806",
+      "date": "2021-12-12T12:12:12"
+    },
+    {
+      "id": "84cc",
+      "post_id": "52806",
+      "username": "muryn.pn",
+      "comment": "It's working noow!",
+      "date": "2024-04-14T16:02:21.136Z"
     }
   ]
 }

@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Form.css';
 
 import { encodePassword, decodePassword } from './PasswordEncDec';
+import {UserContext} from "../../contexts.js";
 
 function RegisterForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const userNavigate = useNavigate();
+
+    const {user, setUser} = useContext(UserContext);
+    if (user) {
+        userNavigate('/');
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -32,7 +38,7 @@ function RegisterForm() {
                 const data = await response.json();
                 console.log('User registered successfully:', data);
                 // Redirect the user to the login page after successful registration
-                userNavigate('/Login');
+                setUser(username);
             } else {
                 console.error('Failed to register user:', response.statusText);
                 // Handle error cases (e.g., display error message)

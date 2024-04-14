@@ -13,6 +13,10 @@ export default class API {
     }
 
     async getRandom() {
-        return this.get("random.php");
+        return this.get("random.php").then(data => data.meals[0]);
+    }
+
+    async getMeal(id) {
+        return this.get(`lookup.php?i=${id}`).then(data => data.meals[0]);
     }
 }

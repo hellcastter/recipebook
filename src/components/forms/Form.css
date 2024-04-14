@@ -2,7 +2,7 @@
     padding: 40px 0;
 }
 
-h2 {
+.form-container h2 {
     text-align: center;
 }
 
@@ -19,14 +19,14 @@ h2 {
     gap: 5px;
 }
 
-label {
+.form-container label {
     text-shadow: rgba(0, 0, 0, .5) 0 0 10px;
     font-weight: 500;
     font-size: 1.125rem;
 }
 
-input[type="text"],
-input[type="password"] {
+.form-container input[type="text"],
+.form-container input[type="password"] {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -34,8 +34,8 @@ input[type="password"] {
     width: 400px;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
     outline: none;
 }
 
@@ -53,17 +53,17 @@ input[type="password"]:focus {
     background-color: #787777;
 }
 
-p {
+.form-container p {
     margin-top: 20px;
     font-size: 16px;
     text-align: center;
 }
 
-a {
+.form-container a {
     color: #007bff;
     text-decoration: none;
 }
 
-a:hover {
+.form-container a:hover {
     text-decoration: underline;
 }

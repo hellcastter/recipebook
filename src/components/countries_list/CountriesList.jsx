@@ -46,7 +46,7 @@ function CountriesList() {
             <ul className="categories-list">
                 {
                     data.map((country) => (
-                        <CategoryItem key={country.id} {...country}/>
+                        <CategoryItem key={country.id} {...country} path="country" />
                     ))
                 }
             </ul>
