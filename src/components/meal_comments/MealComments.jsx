@@ -13,7 +13,7 @@ const MealComments = ({id}) => {
     const {user} = useContext(UserContext);
     const [comment, setComment] = useState("");
 
-    const {data: comments, isLoading, isValidating, mutate} = useSWR(
+    const {data: comments = [], isLoading, isValidating, mutate} = useSWR(
         `http://localhost:3001/comments?post_id=${id}&_sort=-date`,
         async (url) => {
             const response = await fetch(url);
