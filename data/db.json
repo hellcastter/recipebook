@@ -3,12 +3,25 @@
     {
       "id": "104f",
       "username": "kostya",
-      "password": "MjIyMg=="
+      "password": "MjIyMg==",
+      "liked_posts": [
+        "52806"
+      ]
     },
     {
       "id": "9992",
       "username": "muryn.pn",
-      "password": "MTIzMTIz"
+      "password": "MTIzMTIz",
+      "liked_posts": [
+        "52806",
+        "52815",
+        "53021",
+        "53020",
+        "53024",
+        "53022",
+        "53019",
+        "52894"
+      ]
     }
   ],
   "comments": [
@@ -32,6 +45,80 @@
       "username": "muryn.pn",
       "comment": "It's working noow!",
       "date": "2024-04-14T16:02:21.136Z"
+    },
+    {
+      "id": "eeee",
+      "post_id": "53038",
+      "username": "kostya",
+      "comment": "Wow Mustard!!!",
+      "date": "2024-04-15T12:30:33.417Z"
+    },
+    {
+      "id": "9766",
+      "post_id": "52903",
+      "username": "muryn.pn",
+      "comment": "123",
+      "date": "2024-04-15T12:51:23.176Z"
+    },
+    {
+      "id": "8608",
+      "post_id": "52965",
+      "username": "muryn.pn",
+      "comment": "test",
+      "date": "2024-04-21T13:22:13.805Z"
+    },
+    {
+      "id": "cb49",
+      "post_id": "52885",
+      "username": {
+        "id": "9992",
+        "username": "muryn.pn",
+        "liked_posts": [
+          "52806"
+        ]
+      },
+      "comment": "asdf",
+      "date": "2024-04-21T14:13:34.431Z"
+    },
+    {
+      "id": "77b9",
+      "post_id": "52764",
+      "username": "muryn.pn",
+      "comment": "asdf",
+      "date": "2024-04-21T14:19:20.594Z"
+    },
+    {
+      "id": "f22b",
+      "username": "muryn.pn",
+      "comment": "asdf",
+      "date": "2024-04-21T16:00:17.236Z"
+    },
+    {
+      "id": "9222",
+      "post_id": "3e84",
+      "username": "muryn.pn",
+      "comment": "asdf",
+      "date": "2024-04-21T16:00:55.770Z"
+    },
+    {
+      "id": "e2fd",
+      "post_id": "3e84",
+      "username": "muryn.pn",
+      "comment": "fda",
+      "date": "2024-04-21T16:00:57.968Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "adb2",
+      "author_id": "9992",
+      "strMeal": "Sweet potato & peanut curry",
+      "strMealThumb": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/satay-sweet-potato-curry-17cc62d.jpg?quality=90&webp=true",
+      "strIngredient": "Sweet potato\nPeanut curry",
+      "strInstructions": "STEP 1\nMelt 1 tbsp coconut oil in a saucepan over a medium heat and soften 1 chopped onion for 5 mins. Add 2 grated garlic cloves and a grated thumb-sized piece of ginger, and cook for 1 min until fragrant.\n\nSTEP 2\nStir in 3 tbsp Thai red curry paste, 1 tbsp smooth peanut butter and 500g sweet potato, peeled and cut into chunks, then add 400ml coconut milk and 200ml water.\n\nSTEP 3\nBring to the boil, turn down the heat and simmer, uncovered, for 25-30 mins or until the sweet potato is soft.\n\nSTEP 4\nStir through 200g spinach and the juice of 1 lime, and season well. Serve with cooked rice, and if you want some crunch, sprinkle over a few dry roasted peanuts.",
+      "strTags": "Potato, Peanut, Curry",
+      "strYoutube": "",
+      "strSource": "https://www.bbcgoodfood.com/recipes/satay-sweet-potato-curry"
     }
   ]
 }

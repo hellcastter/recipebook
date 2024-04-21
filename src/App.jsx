@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from './pages/Home';
-import CalorieCounter from './pages/CalorieCounter';
 import Recipes from './pages/Recipes';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -12,42 +11,46 @@ import MealPage from "./pages/MealPage.jsx";
 
 import API from "./api.js";
 import { ApiContext, UserContext } from "./contexts.js";
+import PageLayout from "./pages/PageLayout.jsx";
+import AddPage from "./pages/AddPage.jsx";
+import MealOwnPage from "./pages/MealOwnPage.jsx";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-        errorElement: <NotFoundPage />
-    },
-    {
-        path: "/CalorieCounter",
-        element: <CalorieCounter />,
-    },
-    {
-        path: "/Recipes",
-        element: <Recipes />,
-    },
-    {
-        path: "/Login",
-        element: <Login />,
-    },
-    {
-        path: "/Register",
-        element: <Register />,
-    },
-    {
-        path: "/category/:name",
-        element: <CategoryPage type="category" />
-    },
-    {
-        path: "/country/:name",
-        element: <CategoryPage type="country" />
-    },
-    {
-        path: "/meal/:id",
-        element: <MealPage />
-    }
-]);
+const router = createBrowserRouter([{
+    element: <PageLayout />,
+    children: [
+        {
+            path: "/",
+            element: <Home />,
+        }, {
+            path: "/recipes",
+            element: <Recipes />,
+        }, {
+            path: "/login",
+            element: <Login />,
+        }, {
+            path: "/register",
+            element: <Register />,
+        },{
+            path: "/add",
+            element: <AddPage />,
+        }, {
+            path: "/category/:name",
+            element: <CategoryPage type="category" />
+        }, {
+            path: "/country/:name",
+            element: <CategoryPage type="country" />
+        }, {
+            path: "/meal/own/:id",
+            element: <MealOwnPage />
+        }, {
+            path: "/meal/:id",
+            element: <MealPage />
+        }, {
+            path: "*",
+            element: <NotFoundPage />,
+        }
+    ]
+}]);
 
 
 const App = () => {

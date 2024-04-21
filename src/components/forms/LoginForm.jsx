@@ -30,6 +30,7 @@ function LoginForm() {
     
             if (response.ok) {
                 const userData = await response.json();
+
                 if (userData.length > 0) {
                     const user = userData[0];
                     const storedPassword = user.password;
@@ -37,7 +38,11 @@ function LoginForm() {
     
                     if (password === decodedPassword) {
                         console.log('Login successful');
-                        setUser(username);
+                        setUser({
+                            id: user.id,
+                            username: user.username,
+                            liked_posts: user.liked_posts
+                        });
                     } else {
                         console.error('Incorrect password');
                         alert('Incorrect password');
@@ -82,7 +87,7 @@ function LoginForm() {
                 </div>
                 <button className="submit-button" type="submit">Login</button>
             </form>
-            <p>Don't have an account? <Link to="/Register">Register</Link></p>
+            <p>Dont have an account? <Link to="/register">Register</Link></p>
         </div>
     );
 }
