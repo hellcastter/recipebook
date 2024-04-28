@@ -20,7 +20,8 @@
         "53024",
         "53022",
         "53019",
-        "52894"
+        "52894",
+        "52956"
       ]
     }
   ],
@@ -52,60 +53,6 @@
       "username": "kostya",
       "comment": "Wow Mustard!!!",
       "date": "2024-04-15T12:30:33.417Z"
-    },
-    {
-      "id": "9766",
-      "post_id": "52903",
-      "username": "muryn.pn",
-      "comment": "123",
-      "date": "2024-04-15T12:51:23.176Z"
-    },
-    {
-      "id": "8608",
-      "post_id": "52965",
-      "username": "muryn.pn",
-      "comment": "test",
-      "date": "2024-04-21T13:22:13.805Z"
-    },
-    {
-      "id": "cb49",
-      "post_id": "52885",
-      "username": {
-        "id": "9992",
-        "username": "muryn.pn",
-        "liked_posts": [
-          "52806"
-        ]
-      },
-      "comment": "asdf",
-      "date": "2024-04-21T14:13:34.431Z"
-    },
-    {
-      "id": "77b9",
-      "post_id": "52764",
-      "username": "muryn.pn",
-      "comment": "asdf",
-      "date": "2024-04-21T14:19:20.594Z"
-    },
-    {
-      "id": "f22b",
-      "username": "muryn.pn",
-      "comment": "asdf",
-      "date": "2024-04-21T16:00:17.236Z"
-    },
-    {
-      "id": "9222",
-      "post_id": "3e84",
-      "username": "muryn.pn",
-      "comment": "asdf",
-      "date": "2024-04-21T16:00:55.770Z"
-    },
-    {
-      "id": "e2fd",
-      "post_id": "3e84",
-      "username": "muryn.pn",
-      "comment": "fda",
-      "date": "2024-04-21T16:00:57.968Z"
     }
   ],
   "recipes": [
@@ -119,6 +66,28 @@
       "strTags": "Potato, Peanut, Curry",
       "strYoutube": "",
       "strSource": "https://www.bbcgoodfood.com/recipes/satay-sweet-potato-curry"
+    },
+    {
+      "id": "1996",
+      "author_id": "9992",
+      "strMeal": "Sweet potato & peanut curry",
+      "strMealThumb": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/satay-sweet-potato-curry-17cc62d.jpg?quality=90&webp=true",
+      "strIngredient": "asdfsadf",
+      "strInstructions": "asdf",
+      "strTags": "",
+      "strYoutube": "",
+      "strSource": ""
+    },
+    {
+      "id": "2cfc",
+      "author_id": "9992",
+      "strMeal": "Yavoriv pie",
+      "strMealThumb": "https://res.cloudinary.com/drqncpx7b/image/upload/v1714285111/yavorivskij-pyrig_sitewebukr-1000x600_bmkzd8.jpg",
+      "strIngredient": "500 g of puff pastry (+ 2 tbsp of flour for dusting)\n1 cup of buckwheat\n8 potatoes\n2 small onions (or 1 large)\n160 g of KOMO Havarti cheese\n2 eggs (1 for greasing)\n4 tbsp of vegetable oil\nsalt and pepper to taste",
+      "strInstructions": "Prepare all the ingredients to make a real Yavoriv pie.\n\nBoil 1 cup of buckwheat until half cooked in advance; it will be cooked with the pie. Boil the potatoes (8 pcs.) until tender in salted water and mash them with a pestle.\n\nCut the onion (2 pcs.) into small cubes. Fry in vegetable oil until lightly golden brown.\n\nTake a large bowl to mix the filling. Put the potatoes and fried onions in the bowl.\n\nPour the half-cooked buckwheat into the bowl with the filling and beat in 1 egg.\n\nCut 160 g of KOMO Havarti cheese into small cubes and add to the filling. Season with salt and pepper to taste and mix the filling.\n\n\nFlour a board or table and roll out 2/3 of the dough into a long layer to cover the bottom and sides of the mold. I have a square baking dish, so I make a rectangular layer.\n\nPut the dough into the mold so that it fits over the edges of the mold, but do not press it down too much, because later we will wrap the sides. Put the filling inside and smooth it out.\n\nRoll out 1/3 of the remaining dough into a thin layer to the size of the mold and cover the pie.\n\nNow pinch the edges of the pie, sealing the dough that extends beyond the mold to the top layer of dough.\n\nBrush the pie with egg using a cooking brush. Bake the sycamore pie in a preheated oven for 40 minutes at 180 degrees.\n\nCooking is easy!",
+      "strTags": "Ukrainian,yavoriv,pie",
+      "strYoutube": "https://www.youtube.com/watch?v=tCc7Kwt7BYE",
+      "strSource": "https://klopotenko.com/iz-grechkoyu-ta-kartopleyu-reczept-tradyczijnogo-yavorivskogo-pyroga/"
     }
   ]
 }

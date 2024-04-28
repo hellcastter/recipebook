@@ -4,9 +4,48 @@ import "./AddMealForm.css";
 import {UserContext} from "../../contexts.js";
 import {useNavigate} from "react-router-dom";
 
+import {useDropzone} from "react-dropzone";
+import CreatableSelect from 'react-select/creatable';
+
+const cloudName = 'drqncpx7b';
+const unsignedUploadPreset = 'ml_default';
+
 const AddMealForm = () => {
     const {user} = useContext(UserContext);
     const userNavigate = useNavigate();
+
+    const {acceptedFiles,
+        getRootProps,
+        getInputProps} = useDropzone({
+        accept: {
+            'image/*': ['.png', '.jpeg', '.jpg'],
+        },
+        maxSize: 5000000,
+        maxFiles: 1,
+        onDrop: (acceptedFiles) => {
+            const file = acceptedFiles[0];
+
+        //     upload to cloudinary
+            const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+            const fd = new FormData();
+            fd.append('upload_preset', unsignedUploadPreset);
+            fd.append('file', file);
+
+            fetch(url, {
+                method: 'POST',
+                body: fd,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // File uploaded successfully
+                    const strMealThumb = data.secure_url;
+                    setForm((prevForm) => ({...prevForm, strMealThumb}));
+                })
+                .catch((error) => {
+                    console.error('Error uploading the file:', error);
+                });
+        }
+    })
 
     const [form, setForm] = useState({
         strMeal: "",
@@ -25,6 +64,12 @@ const AddMealForm = () => {
             ...prevForm,
             [name]: value,
         }));
+    }
+
+    const onTagsChange = (newValue, actionMeta) => {
+        const strTags = newValue.map((option) => option.value).join(',');
+        console.log(strTags);
+        setForm((prevForm) => ({...prevForm, strTags}));
     }
 
     const onSubmit = (event) => {
@@ -58,14 +103,23 @@ const AddMealForm = () => {
             />
 
             <label htmlFor="image">Image url</label>
-            <input
-                type="url"
-                id="strMealThumb"
-                name="strMealThumb"
-                value={form.strMealThumb}
-                onChange={onFormChange}
-                placeholder="https://example.com/image.jpg"
-            />
+            <div {...getRootProps({className: 'add-meal__dropzone'})}>
+                <input {...getInputProps({
+                    multiple: false,
+                    id: "strMealThumb",
+                    name: "strMealThumb"
+                })} />
+                <p>Drag & drop some files here, or click to select files</p>
+                <em>(Only *.jpeg and *.png images will be accepted)</em>
+            </div>
+
+            <ul>
+                {acceptedFiles.map(file => (
+                    <li key={file.path}>
+                        {file.path} - {file.size} bytes
+                    </li>
+                ))}
+            </ul>
 
             <label htmlFor="description">Ingredients</label>
             <textarea
@@ -88,13 +142,17 @@ const AddMealForm = () => {
             />
 
             <label htmlFor="tags">Tags</label>
-            <input
-                type="text"
+
+            <CreatableSelect
+                className="add-meal__tags"
+                isClearable
+                isMulti
+                placeholder="Select tags"
                 id="strTags"
+                onChange={onTagsChange}
                 name="strTags"
-                value={form.strTags}
-                onChange={onFormChange}
-                placeholder="tag1, tag2, tag3" />
+
+            />
 
             <label htmlFor="youtube">YouTube</label>
             <input
@@ -103,7 +161,7 @@ const AddMealForm = () => {
                 name="strYoutube"
                 value={form.strYoutube}
                 onChange={onFormChange}
-                placeholder="https://www.youtube.com/watch?v=..." />
+                placeholder="https://www.youtube.com/watch?v=..."/>
 
             <label htmlFor="source">Source</label>
             <input
@@ -112,7 +170,7 @@ const AddMealForm = () => {
                 name="strSource"
                 value={form.strSource}
                 onChange={onFormChange}
-                placeholder="https://example.com" />
+                placeholder="https://example.com"/>
 
 
             <button type="submit">Add Recipe</button>

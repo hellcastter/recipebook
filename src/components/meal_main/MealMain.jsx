@@ -37,6 +37,19 @@ const MealMain = ({data, id, own = false}) => {
         });
     }
 
+    // console.log(data.strIngredient.split("\n"));
+
+    const strIngredient = own ?
+        data.strIngredient.split("\n")
+            .map((item) => <li key={item}>{item}</li>):
+        Object.entries(data)
+            .filter(([key, value]) => key.startsWith("strIngredient") && value)
+            .map(([key, value]) => (
+                <li key={key}>
+                    {value} - {data[`strMeasure${key.slice(13)}`]}
+                </li>
+            ))
+
     return (
         <main className="meal__main">
             <h1 className="meal__title">
@@ -69,23 +82,9 @@ const MealMain = ({data, id, own = false}) => {
             )}
 
             <h2>Ingredients</h2>
-            {
-                own ?
-                    <p>{data.strIngredient}</p> :
-                    (
-                        <ul>
-                            {
-                                Object.entries(data)
-                                    .filter(([key, value]) => key.startsWith("strIngredient") && value)
-                                    .map(([key, value]) => (
-                                        <li key={key}>
-                                            {value} - {data[`strMeasure${key.slice(13)}`]}
-                                        </li>
-                                    ))
-                            }
-                        </ul>
-                    )
-                }
+            <ul>
+                {strIngredient}
+            </ul>
 
             <MealInstructions instructions={data.strInstructions} source={data.strSource} />
 
