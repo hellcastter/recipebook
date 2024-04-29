@@ -31,7 +31,7 @@ const MealComments = ({id}) => {
             },
             body: JSON.stringify({
                 post_id: id,
-                username: user,
+                username: user.username,
                 comment,
                 date: new Date().toISOString()
             })

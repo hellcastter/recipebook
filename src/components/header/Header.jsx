@@ -25,13 +25,15 @@ const Header = () => {
                     <ul>
                         <Search />
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/Recipes">Recipes</Link></li>
-                        <li><Link to="/CalorieCounter">Calorie counter</Link></li>
+                        <li><Link to="/recipes">Recipes</Link></li>
 
                         {
                             user ?
-                                <li><Link onClick={() => setUser(null)}>Logout</Link></li> :
-                                <li><Link to="/Login">Login</Link></li>
+                                <>
+                                    <li><Link to="/add">Add Recipe</Link></li>
+                                    <li><Link onClick={() => setUser(null)}>Logout</Link></li>
+                                </> :
+                                <li><Link to="/login">Login</Link></li>
                         }
                     </ul>
                 </nav>

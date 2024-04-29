@@ -1,0 +1,253 @@
+@keyframes bubble {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    25% {
+        transform: scale(0.5) translate(0, 1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1) translate(0, -20px);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(1) translate(0, -30px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translate(0, -60px);
+        opacity: 0;
+    }
+}
+@keyframes stove {
+    0% {
+        transform: translate(0, 1);
+    }
+    10% {
+        transform: translate(0, -10%) rotate(5deg);
+    }
+    20% {
+        transform: translate(0, 10%) rotate(-10deg);
+    }
+    40% {
+        transform: translate(0, -40%);
+    }
+    95% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: translate(0, 1) rotate(0deg);
+    }
+}
+@keyframes stove-handle {
+    0% {
+        transform: translate(0, 1);
+    }
+    10% {
+        transform: translate(0, -10%) rotate(25deg);
+    }
+    20% {
+        transform: translate(0, 10%) rotate(-10deg);
+    }
+    40% {
+        transform: translate(0, -40%) rotate(10deg);
+    }
+    100% {
+        transform: translate(0, 1);
+    }
+}
+@keyframes food-2 {
+    0% {
+        transform: translate(0);
+    }
+    10% {
+        transform: translate(55px, -1px);
+    }
+    20% {
+        transform: translate(63px, -5px) rotate(0deg);
+    }
+    28% {
+        transform: translate(70px, -50px);
+    }
+    35% {
+        transform: translate(68px, -55px) rotate(180deg);
+    }
+    40% {
+        transform: translate(60px, -60px);
+    }
+    45% {
+        transform: translate(52px, -65px) rotate(360deg);
+    }
+    50% {
+        transform: translate(42px, -69px);
+    }
+    55% {
+        transform: translate(31px, -67px);
+    }
+    60% {
+        transform: translate(22px, -64px) rotate(-180deg);
+    }
+    65% {
+        transform: translate(15px, -60px);
+    }
+    70% {
+        transform: translate(6px, -54px);
+    }
+    75% {
+        transform: translate(-1px, -47px) rotate(-90deg);
+    }
+    80% {
+        transform: translate(-7px, -36px);
+    }
+    85% {
+        transform: translate(-9px, -24px) rotate(0deg);
+    }
+    90% {
+        transform: translate(-7px, -8px) rotate(90deg);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.loader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-container {
+    width: 400px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    position: relative;
+}
+
+.stove {
+    position: relative;
+}
+.stove--handle {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 8px;
+    position: absolute;
+    left: -74px;
+    bottom: -65px;
+    background-color: transparent;
+    border-top: 5px solid #fff;
+    border-left: 3px solid transparent;
+    border-radius: 100%;
+    transform: rotate(15deg);
+    transform-origin: right;
+    animation: stove-handle 1500ms 250ms infinite;
+}
+.stove--base {
+    width: 100px;
+    height: 23px;
+    background-color: #fff;
+    border-radius: 0 0 40px 40px;
+    position: absolute;
+    top: 50px;
+    transform-origin: left;
+    animation: stove 1500ms 250ms infinite;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(173deg, #ff79da 0%, #d66cdb 39%, #ab5edc 85%, #9b59dc 100%);
+    opacity: 1;
+    animation: bubble 2000ms infinite ease-in;
+}
+.bubble--1 {
+    animation-delay: 166.6666666667ms;
+}
+.bubble--2 {
+    animation-delay: 333.3333333333ms;
+}
+.bubble--3 {
+    animation-delay: 500ms;
+}
+.bubble--4 {
+    animation-delay: 666.6666666667ms;
+}
+.bubble--5 {
+    animation-delay: 833.3333333333ms;
+}
+.bubble--6 {
+    animation-delay: 1000ms;
+}
+.bubble--1 {
+    top: 32px;
+    left: -25px;
+    width: 15px;
+    height: 15px;
+}
+.bubble--2 {
+    top: 30px;
+    left: 10px;
+    width: 8px;
+    height: 8px;
+}
+.bubble--3 {
+    top: 3px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+}
+.bubble--4 {
+    top: -15px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+}
+.bubble--5 {
+    top: 5px;
+    left: -41px;
+    width: 10px;
+    height: 10px;
+}
+.bubble--6 {
+    top: 55px;
+    left: -43px;
+    width: 8px;
+    height: 8px;
+}
+
+.aliment {
+    left: 13px;
+    bottom: -64px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    animation: food-2 1500ms infinite ease-in;
+}
+.aliment--1 {
+    animation-delay: 250ms;
+}
+.aliment--2 {
+    animation-delay: 500ms;
+}
+.aliment--3 {
+    animation-delay: 750ms;
+}
+
+.aliment--1 {
+    background-color: #32b091;
+}
+
+.aliment--2 {
+    background-color: #4acbab;
+}
+
+.aliment--3 {
+    background-color: #278870;
+}

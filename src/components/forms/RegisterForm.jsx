@@ -36,9 +36,12 @@ function RegisterForm() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('User registered successfully:', data);
                 // Redirect the user to the login page after successful registration
-                setUser(username);
+                setUser({
+                    id: data.id,
+                    username: data.username,
+                    liked_posts: data.liked_posts
+                });
             } else {
                 console.error('Failed to register user:', response.statusText);
                 // Handle error cases (e.g., display error message)

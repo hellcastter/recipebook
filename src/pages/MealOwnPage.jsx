@@ -9,11 +9,13 @@ import './MealPage.css';
 import MealAside from "../components/meal-aside/MealAside.jsx";
 import MealMain from "../components/meal_main/MealMain.jsx";
 
-const MealPage = () => {
+const MealOwnPage = () => {
     const { id } = useParams();
     const api = useContext(ApiContext);
 
-    const { data, isLoading, error } = useSWR(id, async () => api.getMeal(id));
+    const { data, isLoading, error } = useSWR(id, async () => {
+        return fetch(`http://localhost:3001/recipes/${id}`).then(res => res.json());
+    });
     const { data: randomMeal, isLoading: randomIsLoading } = useSWR(`random-${id}`, async () => api.getRandom(), { revalidateOnFocus: false });
 
 
@@ -22,15 +24,15 @@ const MealPage = () => {
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <div>Unable to find such a meal</div>;
     }
 
     return (
         <div className="meal__wrapper">
-            <MealMain data={data} id={id} />
-            <MealAside data={data} randomMeal={randomMeal} randomIsLoading={randomIsLoading} />
+            <MealMain data={data} id={id} own={true} />
+            <MealAside data={data} randomMeal={randomMeal} randomIsLoading={randomIsLoading} own={true} />
         </div>
     );
 }
 
-export default MealPage;
+export default MealOwnPage;

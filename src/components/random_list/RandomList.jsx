@@ -8,6 +8,7 @@ import useSWR from "swr";
 import refresh from '../../assets/refresh.svg';
 import DishItem from "../dish_item/DishItem.jsx";
 import PropTypes from "prop-types";
+import Loader from "../loader/Loader.jsx";
 
 
 function RandomList({ items = 10 }) {
