@@ -49,7 +49,7 @@ const MealComments = ({id}) => {
                 <form onSubmit={onSubmit}>
                     <textarea
                         placeholder="Leave a comment" className="meal__textarea" value={comment}
-                        onChange={(event) => setComment(event.target.value)} />
+                        onChange={(event) => setComment(event.target.value)}/>
                     <button type="submit" className="meal__submit">Submit</button>
                 </form> :
                 <p>
@@ -63,7 +63,7 @@ const MealComments = ({id}) => {
                         comments.map((comment) => (
                             <li key={comment.id}>
                                 <div className="comment__author">
-                                    <img src={userAvatar} alt={comment.username} width={30} />
+                                    <img src={userAvatar} alt={comment.username} width={30}/>
 
                                     <div>
                                         <strong>{comment.username}</strong>

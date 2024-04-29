@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import DishItem from "../dish_item/DishItem.jsx";
 import PropTypes from "prop-types";
 
-const MealAside = ({ data, randomMeal, randomIsLoading, own = false }) => {
+const MealAside = ({data, randomMeal, randomIsLoading, own = false}) => {
     return (
         <aside className="meal__aside">
             <h3>Tags</h3>
@@ -17,13 +17,13 @@ const MealAside = ({ data, randomMeal, randomIsLoading, own = false }) => {
 
                 {
                     data.strTags &&
-                        data.strTags.split(",")
-                            .filter((elem) => elem)
-                            .map((tag) => (
-                                <span key={tag} className="meal__tag">
+                    data.strTags.split(",")
+                        .filter((elem) => elem)
+                        .map((tag) => (
+                            <span key={tag} className="meal__tag">
                                     #{tag.trim()}
                                 </span>
-                            ))
+                        ))
                 }
             </div>
 

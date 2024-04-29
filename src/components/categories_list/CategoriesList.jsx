@@ -4,9 +4,8 @@ import './CategoriesList.css';
 
 import {ApiContext} from "../../contexts.js";
 
-import {useContext, useEffect, useState} from 'react';
+import {useContext} from 'react';
 import CategoryItem from "../catergory_item/CategoryItem.jsx";
-import Container from "../container/Container.jsx";
 import useSWR from "swr";
 
 
@@ -32,10 +31,10 @@ function CategoriesList() {
     return (
         <div className="categories">
             <h2 className="categories-title">Categories</h2>
-            <ul  className="categories-list">
+            <ul className="categories-list">
                 {
                     data.map(({idCategory, strCategory: name, strCategoryThumb: thumb}) => (
-                        <CategoryItem key={idCategory} name={name} thumb={thumb} />
+                        <CategoryItem key={idCategory} name={name} thumb={thumb}/>
                     ))
                 }
             </ul>

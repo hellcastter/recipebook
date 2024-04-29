@@ -8,7 +8,7 @@
 .searchBox:hover > .searchInput,
 .searchBox:focus-within > .searchInput {
     width: 240px;
-    padding: 0 6px;
+    padding: 0 6px 0 10px;
 }
 
 .searchButton {
@@ -34,8 +34,8 @@
     font-size: 16px;
     transition: 0.7s !important;
     line-height: 30px !important;
-    width: 0px;
-
+    width: 0;
+    color: #fff;
 }
 
 @media screen and (max-width: 620px) {

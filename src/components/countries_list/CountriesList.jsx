@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext} from 'react';
 import {ApiContext} from "../../contexts.js";
 import CategoryItem from "../catergory_item/CategoryItem.jsx";
 import useSWR from "swr";
@@ -30,7 +30,7 @@ function CountriesList() {
 
             })
             .then((countries) => Promise.all(countries))
-    },  {revalidateOnFocus: false});
+    }, {revalidateOnFocus: false});
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -46,7 +46,7 @@ function CountriesList() {
             <ul className="categories-list">
                 {
                     data.map((country) => (
-                        <CategoryItem key={country.id} {...country} path="country" />
+                        <CategoryItem key={country.id} {...country} path="country"/>
                     ))
                 }
             </ul>

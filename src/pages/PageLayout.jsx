@@ -6,10 +6,10 @@ import Container from "../components/container/Container.jsx";
 const PageLayout = () => (
     <main className="page">
         <Container>
-            <Header />
-            <Outlet />
+            <Header/>
+            <Outlet/>
         </Container>
-        <Footer />
+        <Footer/>
     </main>
 );
 

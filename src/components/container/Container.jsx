@@ -2,7 +2,7 @@ import 'react';
 
 import './Container.css';
 
-function Container({ children, className, ...otherProps }) {
+function Container({children, className, ...otherProps}) {
     return (
         <div className={`${className} container`} {...otherProps}>
             {children}

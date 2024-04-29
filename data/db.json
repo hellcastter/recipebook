@@ -88,6 +88,17 @@
       "strTags": "Ukrainian,yavoriv,pie",
       "strYoutube": "https://www.youtube.com/watch?v=tCc7Kwt7BYE",
       "strSource": "https://klopotenko.com/iz-grechkoyu-ta-kartopleyu-reczept-tradyczijnogo-yavorivskogo-pyroga/"
+    },
+    {
+      "id": "9105",
+      "author_id": "9992",
+      "strMeal": "Суші",
+      "strMealThumb": "https://res.cloudinary.com/drqncpx7b/image/upload/v1714395745/1591698130-1776_fohom5.jpg",
+      "strIngredient": "Норі – 10 г\nЛосось – 200 г\nКрем-сир – 200 г\nОгірки – 150 г\nКунжут – 5 г\nКруглий рис – 1 ст.\nВода – 250 мл\nРисовий оцет – 3 ч.л.\nЦукор – 0,5 ст.л.\nСіль – 0,5 ч.л.\nСоєвий соус – до смаку",
+      "strInstructions": "Для суші потрібно правильно відварити рис – підійде будь-який круглий рис. Його ретельно промиваємо, заливаємо чистою водою і ставимо на сильний вогонь, доводимо до кипіння. Співвідношення води та рису тут 1:1,5.\n\nПісля закипання зменшуємо вогонь до мінімуму й варимо рис на самому слабкому вогні 15 хвилин, кришку не відкриваємо і не перемішуємо.\n\nТим часом готуємо заправку для рису. В рисовий оцет додати сіль і цукор, добре перемішати.\n\nМожна відразу ж очистити й нарізати огірок смужками.",
+      "strTags": "sushi",
+      "strYoutube": "",
+      "strSource": "https://www.unian.ua/lite/holidays/sushi-recept-yak-prigotuvati-roli-recept-11028821.html"
     }
   ]
 }

@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import './Form.css';
 
-import { encodePassword, decodePassword } from './PasswordEncDec';
+import {encodePassword} from './PasswordEncDec';
 import {UserContext} from "../../contexts.js";
 
 function RegisterForm() {
@@ -56,7 +56,7 @@ function RegisterForm() {
             <h2>Register</h2>
             <form className="class-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="username">Username:</label><br />
+                    <label htmlFor="username">Username:</label><br/>
                     <input
                         type="text"
                         id="username"
@@ -66,7 +66,7 @@ function RegisterForm() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password:</label><br />
+                    <label htmlFor="password">Password:</label><br/>
                     <input
                         type="password"
                         id="password"

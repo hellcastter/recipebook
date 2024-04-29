@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const MealYoutube = ({ title, strYoutube }) => {
+const MealYoutube = ({title, strYoutube}) => {
     if (!strYoutube) return null;
 
     return (

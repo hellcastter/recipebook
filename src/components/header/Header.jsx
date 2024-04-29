@@ -1,5 +1,5 @@
 import 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import Container from '../container/Container.jsx';
 
@@ -23,7 +23,7 @@ const Header = () => {
 
                 <nav className="header__nav">
                     <ul>
-                        <Search />
+                        <Search/>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/recipes">Recipes</Link></li>
 

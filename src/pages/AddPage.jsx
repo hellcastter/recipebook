@@ -15,7 +15,7 @@ const AddPage = () => {
     return (
         <>
             <h1 className="add-page__title">Add Recipe</h1>
-            <AddMealForm />
+            <AddMealForm/>
         </>
     );
 }

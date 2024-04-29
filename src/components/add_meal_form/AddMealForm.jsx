@@ -14,9 +14,11 @@ const AddMealForm = () => {
     const {user} = useContext(UserContext);
     const userNavigate = useNavigate();
 
-    const {acceptedFiles,
+    const {
+        acceptedFiles,
         getRootProps,
-        getInputProps} = useDropzone({
+        getInputProps
+    } = useDropzone({
         accept: {
             'image/*': ['.png', '.jpeg', '.jpg'],
         },
@@ -25,7 +27,7 @@ const AddMealForm = () => {
         onDrop: (acceptedFiles) => {
             const file = acceptedFiles[0];
 
-        //     upload to cloudinary
+            //     upload to cloudinary
             const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
             const fd = new FormData();
             fd.append('upload_preset', unsignedUploadPreset);
@@ -66,7 +68,7 @@ const AddMealForm = () => {
         }));
     }
 
-    const onTagsChange = (newValue, actionMeta) => {
+    const onTagsChange = (newValue) => {
         const strTags = newValue.map((option) => option.value).join(',');
         console.log(strTags);
         setForm((prevForm) => ({...prevForm, strTags}));

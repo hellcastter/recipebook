@@ -4,7 +4,7 @@ import RegisterForm from "../components/forms/RegisterForm.jsx"
 
 const Register = () => {
     return (
-        <RegisterForm />
+        <RegisterForm/>
     )
 }
 

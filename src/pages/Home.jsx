@@ -9,12 +9,12 @@ import hero from "../assets/hero.jpg";
 const Home = () => {
     return (
         <>
-            <img src={hero} alt="hero" className="hero" />
+            <img src={hero} alt="hero" className="hero"/>
 
-            <CategoriesList />
-            <CountriesList />
+            <CategoriesList/>
+            <CountriesList/>
 
-            <RandomList items={10} />
+            <RandomList items={10}/>
         </>
     )
 }

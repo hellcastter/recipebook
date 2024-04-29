@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import "./DishItem.css";
 
-function DishItem({ id, name, thumb }) {
+function DishItem({id, name, thumb}) {
     return (
         <li className="dish-item">
             <Link to={`/meal/${id}`} className="dish-item__link">
-                <img src={thumb} alt={name} />
+                <img src={thumb} alt={name}/>
                 <p>{name}</p>
             </Link>
         </li>

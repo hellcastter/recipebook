@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const MealInstructions = ({ instructions, source}) => {
+const MealInstructions = ({instructions, source}) => {
     if (!instructions) return null;
 
     return (

@@ -1,25 +1,25 @@
-import { useContext } from 'react';
+import {useContext} from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import useSWR from "swr";
 
 import './App.css'
 
 import DishItem from "../components/dish_item/DishItem.jsx";
 
-import { ApiContext } from "../contexts.js";
+import {ApiContext} from "../contexts.js";
 
 
-const CategoryPage = ({ type }) => {
-    const { name } = useParams();
+const CategoryPage = ({type}) => {
+    const {name} = useParams();
     const api = useContext(ApiContext);
 
-    const { data = [], error, isLoading } = useSWR(
+    const {data = [], error, isLoading} = useSWR(
         `/filter.php?${type == 'country' ? 'a' : 'c'}=${name}`,
         async (url) => {
             return api
                 .get(url)
-                .then(({ meals }) => meals || []);
+                .then(({meals}) => meals || []);
         }
     );
 
@@ -37,8 +37,8 @@ const CategoryPage = ({ type }) => {
 
             <ul className="categories-page__list">
                 {
-                    data.map(({ idMeal, strMeal, strMealThumb }) => (
-                        <DishItem key={idMeal} id={idMeal} name={strMeal} thumb={strMealThumb} />
+                    data.map(({idMeal, strMeal, strMealThumb}) => (
+                        <DishItem key={idMeal} id={idMeal} name={strMeal} thumb={strMealThumb}/>
                     ))
                 }
             </ul>

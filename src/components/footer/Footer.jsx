@@ -4,7 +4,7 @@ import Container from '../container/Container.jsx';
 
 import logo from '../../assets/logo.png';
 import './Footer.css';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {useContext} from "react";
 import {UserContext} from "../../contexts.js";
 

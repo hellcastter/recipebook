@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react';
+import {useContext, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 
 import './Form.css'
 
-import { encodePassword, decodePassword } from './PasswordEncDec';
+import {decodePassword} from './PasswordEncDec';
 import {UserContext} from "../../contexts.js";
 
 function LoginForm() {
@@ -19,7 +19,7 @@ function LoginForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
+
         try {
             const response = await fetch(`http://localhost:3001/users?username=${username}`, {
                 method: 'GET',
@@ -27,7 +27,7 @@ function LoginForm() {
                     'Content-Type': 'application/json'
                 }
             });
-    
+
             if (response.ok) {
                 const userData = await response.json();
 
@@ -35,7 +35,7 @@ function LoginForm() {
                     const user = userData[0];
                     const storedPassword = user.password;
                     const decodedPassword = decodePassword(storedPassword);
-    
+
                     if (password === decodedPassword) {
                         console.log('Login successful');
                         setUser({
@@ -66,7 +66,7 @@ function LoginForm() {
             <h2>Login</h2>
             <form className="class-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="username">Username:</label><br />
+                    <label htmlFor="username">Username:</label><br/>
                     <input
                         type="text"
                         id="username"
@@ -76,7 +76,7 @@ function LoginForm() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password:</label><br />
+                    <label htmlFor="password">Password:</label><br/>
                     <input
                         type="password"
                         id="password"

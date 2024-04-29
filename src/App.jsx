@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import Home from './pages/Home';
 import Recipes from './pages/Recipes';
@@ -10,44 +10,44 @@ import CategoryPage from "./pages/CategoryPage.jsx";
 import MealPage from "./pages/MealPage.jsx";
 
 import API from "./api.js";
-import { ApiContext, UserContext } from "./contexts.js";
+import {ApiContext, UserContext} from "./contexts.js";
 import PageLayout from "./pages/PageLayout.jsx";
 import AddPage from "./pages/AddPage.jsx";
 import MealOwnPage from "./pages/MealOwnPage.jsx";
 
 const router = createBrowserRouter([{
-    element: <PageLayout />,
+    element: <PageLayout/>,
     children: [
         {
             path: "/",
-            element: <Home />,
+            element: <Home/>,
         }, {
             path: "/recipes",
-            element: <Recipes />,
+            element: <Recipes/>,
         }, {
             path: "/login",
-            element: <Login />,
+            element: <Login/>,
         }, {
             path: "/register",
-            element: <Register />,
-        },{
+            element: <Register/>,
+        }, {
             path: "/add",
-            element: <AddPage />,
+            element: <AddPage/>,
         }, {
             path: "/category/:name",
-            element: <CategoryPage type="category" />
+            element: <CategoryPage type="category"/>
         }, {
             path: "/country/:name",
-            element: <CategoryPage type="country" />
+            element: <CategoryPage type="country"/>
         }, {
             path: "/meal/own/:id",
-            element: <MealOwnPage />
+            element: <MealOwnPage/>
         }, {
             path: "/meal/:id",
-            element: <MealPage />
+            element: <MealPage/>
         }, {
             path: "*",
-            element: <NotFoundPage />,
+            element: <NotFoundPage/>,
         }
     ]
 }]);
@@ -66,7 +66,7 @@ const App = () => {
     return (
         <ApiContext.Provider value={api}>
             <UserContext.Provider value={{user, setUser: saveUser}}>
-                <RouterProvider router={router} />
+                <RouterProvider router={router}/>
             </UserContext.Provider>
         </ApiContext.Provider>
     );

@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useContext, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './Search.css';
 import srchIcon from '../../assets/search.png';
 
-import { ApiContext } from '../../contexts.js';
+import {ApiContext} from '../../contexts.js';
 
 const Search = () => {
     const api = useContext(ApiContext);
@@ -39,10 +39,11 @@ const Search = () => {
     return (
         <div className="search_wrapper">
             <div className="searchBox">
-                <input className="searchInput" type="text" name="" placeholder="Search" onChange={handleInputChange} onBlur={handleCloseInput} />
-                
+                <input className="searchInput" type="text" name="" placeholder="Search" onChange={handleInputChange}
+                       onBlur={handleCloseInput}/>
+
                 <button className="searchButton" href="#" onClick={handleSearch}>
-                    <img src={srchIcon} alt="" />
+                    <img src={srchIcon} alt=""/>
                 </button>
             </div>
             {searchValue && (
@@ -51,7 +52,8 @@ const Search = () => {
                         <div>Loading...</div>
                     ) : (
                         searchResults.map(meal => (
-                            <div className="meal-entry" key={meal.idMeal} onClick={() => navigate(`/meal/${meal.idMeal}`)}>
+                            <div className="meal-entry" key={meal.idMeal}
+                                 onClick={() => navigate(`/meal/${meal.idMeal}`)}>
                                 {meal.strMeal}
                             </div>
                         ))

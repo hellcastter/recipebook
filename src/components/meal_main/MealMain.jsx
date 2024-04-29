@@ -41,7 +41,7 @@ const MealMain = ({data, id, own = false}) => {
 
     const strIngredient = own ?
         data.strIngredient.split("\n")
-            .map((item) => <li key={item}>{item}</li>):
+            .map((item) => <li key={item}>{item}</li>) :
         Object.entries(data)
             .filter(([key, value]) => key.startsWith("strIngredient") && value)
             .map(([key, value]) => (
@@ -71,7 +71,7 @@ const MealMain = ({data, id, own = false}) => {
             </h1>
 
             {data.strMealThumb &&
-                <img src={data.strMealThumb} alt={data.strMeal} className="meal__main-image" /> }
+                <img src={data.strMealThumb} alt={data.strMeal} className="meal__main-image"/>}
 
             {data.strImageSource && (
                 <p>
@@ -86,12 +86,12 @@ const MealMain = ({data, id, own = false}) => {
                 {strIngredient}
             </ul>
 
-            <MealInstructions instructions={data.strInstructions} source={data.strSource} />
+            <MealInstructions instructions={data.strInstructions} source={data.strSource}/>
 
-            <MealYoutube title={data.strMeal} strYoutube={data.strYoutube} />
+            <MealYoutube title={data.strMeal} strYoutube={data.strYoutube}/>
 
             <h2>Comments</h2>
-            <MealComments id={own ? data.id : data.idMeal} />
+            <MealComments id={own ? data.id : data.idMeal}/>
         </main>
     );
 }
