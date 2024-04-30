@@ -15,7 +15,6 @@ const AddMealForm = () => {
     const userNavigate = useNavigate();
 
     const {
-        acceptedFiles,
         getRootProps,
         getInputProps
     } = useDropzone({
@@ -115,13 +114,12 @@ const AddMealForm = () => {
                 <em>(Only *.jpeg and *.png images will be accepted)</em>
             </div>
 
-            <ul>
-                {acceptedFiles.map(file => (
-                    <li key={file.path}>
-                        {file.path} - {file.size} bytes
-                    </li>
-                ))}
-            </ul>
+            {
+                form.strMealThumb && (
+                    <img src={form.strMealThumb} alt={form.strMeal} className="add-meal__image"/>
+                )
+            }
+
 
             <label htmlFor="description">Ingredients</label>
             <textarea
