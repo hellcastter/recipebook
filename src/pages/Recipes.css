@@ -13,28 +13,37 @@
 }
 
 .pagination > .active > a{
-    background-color: #fff ;
-    border-color: #fff ;
+    background-color: #D2D3D4 ;
+    border-color: #D2D3D4 ;
     color: #1D232A;
 }
 
 .pagination > li > a{
-    border: 1px solid #fff ;
+    border: 1px solid #D2D3D4 ;
     padding: 5px 10px;
     outline: none;
     cursor: pointer;
 }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
-    background-color: #fff ;
-    border-color: #fff;
+    background-color: #D2D3D4 ;
+    border-color: #D2D3D4;
     outline: none ;
 }
 
 .pagination > li > a, .pagination > li > span{
-    color: #fff
+    color: #D2D3D4
 }
 
 .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
     border-radius: unset
+}
+
+.wrap-postData {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#bottom-pd {
+    margin-top: 100px;
 }

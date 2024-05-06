@@ -14,19 +14,42 @@ import heart from "../../assets/heart.svg";
 const MealMain = ({data, id, own = false}) => {
     const {user, setUser} = useContext(UserContext);
 
+    // const onLikeClick = () => {
+    //     let liked_posts;
+
+    //     if (user.liked_posts.includes(id)) {
+    //         liked_posts = user.liked_posts.filter((item) => item !== id);
+    //         setUser({...user, liked_posts});
+    //     } else {
+    //         liked_posts = [...user.liked_posts, id];
+    //         setUser({...user, liked_posts});
+    //     }
+
+    //     localStorage.setItem("user", JSON.stringify({...user, liked_posts}));
+
+    //     // save to the server
+    //     fetch('http://localhost:3001/users/' + user.id, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({liked_posts})
+    //     });
+    // }
+
     const onLikeClick = () => {
         let liked_posts;
-
-        if (user.liked_posts.includes(id)) {
+    
+        if (user.liked_posts && user.liked_posts.includes(id)) {
             liked_posts = user.liked_posts.filter((item) => item !== id);
             setUser({...user, liked_posts});
         } else {
-            liked_posts = [...user.liked_posts, id];
+            liked_posts = [...(user.liked_posts || []), id];
             setUser({...user, liked_posts});
         }
-
+    
         localStorage.setItem("user", JSON.stringify({...user, liked_posts}));
-
+    
         // save to the server
         fetch('http://localhost:3001/users/' + user.id, {
             method: 'PATCH',
@@ -36,6 +59,7 @@ const MealMain = ({data, id, own = false}) => {
             body: JSON.stringify({liked_posts})
         });
     }
+
 
     // console.log(data.strIngredient.split("\n"));
 
@@ -55,7 +79,21 @@ const MealMain = ({data, id, own = false}) => {
             <h1 className="meal__title">
                 <span>{data.strMeal}</span>
 
-                {user && (
+                {/* {user && (
+                    <button
+                        className={`meal__favourite-button ${user.liked_posts.includes(id) && "liked"}`}
+                        onClick={onLikeClick}
+                    >
+                        <SVG
+                            src={heart}
+                            width={25}
+                            height="auto"
+                            title="Add to Favourites"
+                        />
+                    </button>
+                )} */}
+
+                {user && user.liked_posts && (
                     <button
                         className={`meal__favourite-button ${user.liked_posts.includes(id) && "liked"}`}
                         onClick={onLikeClick}
@@ -68,6 +106,7 @@ const MealMain = ({data, id, own = false}) => {
                         />
                     </button>
                 )}
+
             </h1>
 
             {data.strMealThumb &&
