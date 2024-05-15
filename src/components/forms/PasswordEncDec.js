@@ -1,8 +1,6 @@
 export const encodePassword = (password) => {
     try {
-        const encodedPassword = btoa(password);
-
-        return encodedPassword;
+        return btoa(password);
     } catch (error) {
         console.error('Error encoding password:', error);
         throw error;
@@ -11,9 +9,7 @@ export const encodePassword = (password) => {
 
 export const decodePassword = (encodedPassword) => {
     try {
-        const decodedPassword = atob(encodedPassword);
-
-        return decodedPassword;
+        return atob(encodedPassword);
     } catch (error) {
         console.error('Error decoding password:', error);
         throw error;

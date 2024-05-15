@@ -1,15 +1,8 @@
 import {useContext} from 'react';
-import {ApiContext} from "../../contexts.js";
-import CategoryItem from "../catergory_item/CategoryItem.jsx";
 import useSWR from "swr";
 
-function CountryItem({strArea, strAreaThumb}) {
-    return (
-        <li className="category-item" style={{backgroundImage: `url(${strAreaThumb})`}}>
-            {strArea}
-        </li>
-    );
-}
+import {ApiContext} from "../../contexts.js";
+import CategoryItem from "../catergory_item/CategoryItem.jsx";
 
 function CountriesList() {
     const api = useContext(ApiContext);
@@ -33,25 +26,21 @@ function CountriesList() {
     }, {revalidateOnFocus: false});
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <div>Loading...</div>;
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>
+        return <div>Error: {error.message}</div>;
     }
 
     return (
         <div className="categories">
             <h2 className="categories-title">Countries</h2>
             <ul className="categories-list">
-                {
-                    data.map((country) => (
-                        <CategoryItem key={country.id} {...country} path="country"/>
-                    ))
-                }
+                { data.map((country) => (<CategoryItem key={country.id} {...country} path="country"/>)) }
             </ul>
         </div>
     );
-}
+};
 
 export default CountriesList;

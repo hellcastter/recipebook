@@ -1,27 +1,15 @@
-import React, {useContext, useState} from 'react';
+import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import './Search.css';
+
 import srchIcon from '../../assets/search.png';
 
-import {ApiContext} from '../../contexts.js';
+import './Search.css';
 
 const Search = () => {
-    const api = useContext(ApiContext);
     const navigate = useNavigate();
     const [searchValue, setSearchValue] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
-    const handleInputChange = (event) => {
-        setSearchValue(event.target.value);
-        handleSearch();
-    };
-
-    const handleCloseInput = () => {
-        setTimeout(() => {
-            setSearchValue('');
-        }, 200);
-    };
 
     const handleSearch = async () => {
         setIsLoading(true);
@@ -36,32 +24,47 @@ const Search = () => {
         }
     };
 
+    const handleInputChange = async (event) => {
+        setSearchValue(event.target.value);
+        await handleSearch();
+    };
+
+    const handleCloseInput = () => {
+        setTimeout(() => {
+            setSearchValue('');
+        }, 200);
+    };
+
     return (
         <div className="search_wrapper">
             <div className="searchBox">
                 <input className="searchInput" type="text" name="" placeholder="Search" onChange={handleInputChange}
                        onBlur={handleCloseInput}/>
 
-                <button className="searchButton" href="#" onClick={handleSearch}>
-                    <img src={srchIcon} alt=""/>
+                <button className="searchButton" onClick={handleSearch}>
+                    <img src={srchIcon} alt="Search"/>
                 </button>
             </div>
-            {searchValue && (
+
+            {
+                searchValue &&
                 <div className="search_examples">
-                    {isLoading ? (
-                        <div>Loading...</div>
-                    ) : (
-                        searchResults.map(meal => (
-                            <div className="meal-entry" key={meal.idMeal}
-                                 onClick={() => navigate(`/meal/${meal.idMeal}`)}>
-                                {meal.strMeal}
-                            </div>
-                        ))
-                    )}
+                    {
+                        isLoading ?
+                            <div>Loading...</div> :
+                            searchResults.map((meal) => (
+                                <div
+                                    className="meal-entry" key={meal.idMeal}
+                                    onClick={() => navigate(`/meal/${meal.idMeal}`)}
+                                >
+                                    {meal.strMeal}
+                                </div>
+                            ))
+                    }
                 </div>
-            )}
+            }
         </div>
     );
-}
+};
 
 export default Search;

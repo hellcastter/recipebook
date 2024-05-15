@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import "./DishItem.css";
 
-function DishItem({id, name, thumb}) {
+const DishItem = ({id, name, thumb}) => {
     return (
         <li className="dish-item">
             <Link to={`/meal/${id}`} className="dish-item__link">

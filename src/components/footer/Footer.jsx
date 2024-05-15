@@ -1,14 +1,14 @@
-import 'react';
+import {useContext} from "react";
+import {Link} from 'react-router-dom';
+
+import {UserContext} from "../../contexts.js";
 
 import Container from '../container/Container.jsx';
 
 import logo from '../../assets/logo.png';
 import './Footer.css';
-import {Link} from 'react-router-dom';
-import {useContext} from "react";
-import {UserContext} from "../../contexts.js";
 
-function Footer() {
+const Footer = () => {
     const {user, setUser} = useContext(UserContext);
 
     return (
@@ -27,7 +27,11 @@ function Footer() {
 
                             {
                                 user ?
-                                    <li><Link onClick={() => setUser(null)}>Logout</Link></li> :
+                                    <>
+                                        <li><Link to="/recipes">My Recipes</Link></li>
+                                        <li><Link to="/add">Add Recipe</Link></li>
+                                        <li><Link onClick={() => setUser(null)} to="/">Logout</Link></li>
+                                    </> :
                                     <li><Link to="/login">Login</Link></li>
                             }
                         </ul>

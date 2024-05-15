@@ -1,15 +1,14 @@
-import 'react';
+import {useContext} from 'react';
+import useSWR from "swr";
 
-import './CategoriesList.css';
+import CategoryItem from "../catergory_item/CategoryItem.jsx";
 
 import {ApiContext} from "../../contexts.js";
 
-import {useContext} from 'react';
-import CategoryItem from "../catergory_item/CategoryItem.jsx";
-import useSWR from "swr";
+import './CategoriesList.css';
 
 
-function CategoriesList() {
+const CategoriesList = () => {
     const api = useContext(ApiContext);
 
     const {data = [], error, isLoading} = useSWR('categories', async () => {
@@ -21,11 +20,11 @@ function CategoriesList() {
     }, {revalidateOnFocus: false});
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <div>Loading...</div>;
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>
+        return <div>Error: {error.message}</div>;
     }
 
     return (
@@ -40,6 +39,6 @@ function CategoriesList() {
             </ul>
         </div>
     );
-}
+};
 
 export default CategoriesList;

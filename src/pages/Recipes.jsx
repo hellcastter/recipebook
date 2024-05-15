@@ -1,91 +1,93 @@
-import {useContext, useEffect, useState} from 'react';
-import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
+import useSWR from 'swr';
 import ReactPaginate from 'react-paginate';
-import './Recipes.css';
+
 import DishItem from "../components/dish_item/DishItem.jsx";
+import { UserContext } from "../contexts.js";
 
-import {UserContext} from "../contexts.js";
+import './Recipes.css';
 
+const perPage = 8;
+
+const fetcher = (url) => fetch(url).then(res => res.json());
+
+const usePaginatedData = (dataFetcher, dependencies) => {
+    const [offset, setOffset] = useState(0);
+    const [pageCount, setPageCount] = useState(0);
+    const [postData, setPostData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await dataFetcher(offset, perPage);
+            setPageCount(Math.ceil(data.totalCount / perPage));
+            setPostData(data.items);
+        };
+
+        fetchData();
+    }, [offset, ...dependencies]);
+
+    const handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        setOffset(selectedPage * perPage);
+    };
+
+    return { postData, pageCount, handlePageClick };
+};
 
 const Recipes = () => {
-    const perPage = 8;
+    const { user } = useContext(UserContext);
+    const { data: allRecipes } = useSWR(`http://localhost:3001/recipes?author_id=${user.id}`, fetcher, { revalidateOnFocus: false });
 
-    const [offset1, setOffset1] = useState(0);
-    const [offset2, setOffset2] = useState(0);
-    const [pageCount1, setPageCount1] = useState(0);
-    const [pageCount2, setPageCount2] = useState(0);
-    const [postData1, setPostData1] = useState([]);
-    const [postData2, setPostData2] = useState([]);
+    const fetchLikedPosts = async (offset, limit) => {
+        if (!user || !user.liked_posts) return { totalCount: 0, items: [] };
 
-    const {user} = useContext(UserContext);
+        const data = await Promise.all(
+            user.liked_posts
+                .slice(offset, offset + limit)
+                .map((id) => (
+                    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+                        .then(res => res.json())
+                        .then(data => data.meals[0])
+                ))
+        );
 
-    const receivedData = async () => {
-        if (user && user.liked_posts) {
-            const data = await Promise.all(user.liked_posts.slice(offset1, offset1 + perPage).map(id =>
-                axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-                    .then(res => res.data.meals[0])
-            ));
-
-            const postData = data.map((meal) => (
-                <DishItem key={meal.idMeal} id={meal.idMeal} name={meal.strMeal} thumb={meal.strMealThumb}/>
-            ));
-
-            setPageCount1(Math.ceil(user.liked_posts.length / perPage));
-            setPostData1(postData);
-        }
+        return {
+            totalCount: user.liked_posts.length,
+            items: data.map(meal => (
+                <DishItem key={meal.idMeal} id={meal.idMeal} name={meal.strMeal} thumb={meal.strMealThumb} />
+            ))
+        };
     };
 
-    const receivedData2 = async () => {
-        const response = await axios.get(`http://localhost:3001/recipes`);
-        const allRecipes = response.data;
+    const fetchUserRecipes = async (offset, limit) => {
+        if (!allRecipes || !user) return { totalCount: 0, items: [] };
 
-        const userRecipes = allRecipes.filter(recipe => recipe.author_id === user.id);
-
-        const postData = userRecipes.slice(offset2, offset2 + perPage).map((meal) => (
-            <DishItem key={`own/${meal.id}`} id={`own/${meal.id}`} name={meal.strMeal} thumb={meal.strMealThumb}/>
-        ));
-
-        setPageCount2(Math.ceil(userRecipes.length / perPage));
-        setPostData2(postData);
+        return {
+            totalCount: allRecipes.length,
+            items: allRecipes.slice(offset, offset + limit).map(meal => (
+                <DishItem key={`own/${meal.id}`} id={`own/${meal.id}`} name={meal.strMeal} thumb={meal.strMealThumb} />
+            ))
+        };
     };
 
-    const handlePageClick1 = (e) => {
-        const selectedPage = e.selected;
-        const offset = selectedPage * perPage;
-
-        setOffset1(offset);
-    };
-
-    const handlePageClick2 = (e) => {
-        const selectedPage = e.selected;
-        const offset = selectedPage * perPage;
-
-        setOffset2(offset);
-    };
-
-    useEffect(() => {
-        receivedData();
-    }, [offset1]);
-
-    useEffect(() => {
-        receivedData2();
-    }, [offset2]);
+    const likedPosts = usePaginatedData(fetchLikedPosts, [user]);
+    const userRecipes = usePaginatedData(fetchUserRecipes, [allRecipes, user]);
 
     return (
         <div className='pagination-wrapper'>
             <h1>Liked recipes</h1>
             <div className="wrap-postData">
-                {postData1}
+                {likedPosts.postData}
             </div>
             <ReactPaginate
                 previousLabel={"prev"}
                 nextLabel={"next"}
                 breakLabel={"..."}
                 breakClassName={"break-me"}
-                pageCount={pageCount1}
+                pageCount={likedPosts.pageCount}
                 marginPagesDisplayed={2}
                 pageRangeDisplayed={5}
-                onPageChange={handlePageClick1}
+                onPageChange={likedPosts.handlePageClick}
                 containerClassName={"pagination"}
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}
@@ -93,7 +95,7 @@ const Recipes = () => {
             <div id="bottom-pd">
                 <h1>Added recipes</h1>
                 <div className="wrap-postData">
-                    {postData2}
+                    {userRecipes.postData}
                 </div>
             </div>
             <ReactPaginate
@@ -101,10 +103,10 @@ const Recipes = () => {
                 nextLabel={"next"}
                 breakLabel={"..."}
                 breakClassName={"break-me"}
-                pageCount={pageCount2}
+                pageCount={userRecipes.pageCount}
                 marginPagesDisplayed={2}
                 pageRangeDisplayed={5}
-                onPageChange={handlePageClick2}
+                onPageChange={userRecipes.handlePageClick}
                 containerClassName={"pagination"}
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}

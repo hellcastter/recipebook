@@ -2,12 +2,12 @@ import {useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import useSWR from 'swr';
 
-
 import {ApiContext} from '../contexts.js';
 
-import './MealPage.css';
 import MealAside from "../components/meal-aside/MealAside.jsx";
 import MealMain from "../components/meal_main/MealMain.jsx";
+
+import './MealPage.css';
 
 const MealPage = () => {
     const {id} = useParams();
@@ -34,6 +34,6 @@ const MealPage = () => {
             <MealAside data={data} randomMeal={randomMeal} randomIsLoading={randomIsLoading}/>
         </div>
     );
-}
+};
 
 export default MealPage;

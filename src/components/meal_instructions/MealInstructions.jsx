@@ -9,21 +9,19 @@ const MealInstructions = ({instructions, source}) => {
             <p className="meal__instuction">{instructions}</p>
 
             {
-                source && (
+                source &&
                     <p>
                         <a href={source} target="_blank" rel="noopener noreferrer">
                             Original Recipe
                         </a>
                     </p>
-                )
             }
         </>
     )
 }
 
 MealInstructions.propTypes = {
-    instructions: PropTypes.string,
-    source: PropTypes.string
+    instructions: PropTypes.string, source: PropTypes.string
 }
 
 export default MealInstructions;

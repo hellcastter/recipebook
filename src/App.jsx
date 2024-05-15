@@ -8,12 +8,12 @@ import Register from './pages/Register';
 import NotFoundPage from './pages/NotFoundPage'
 import CategoryPage from "./pages/CategoryPage.jsx";
 import MealPage from "./pages/MealPage.jsx";
-
-import API from "./api.js";
-import {ApiContext, UserContext} from "./contexts.js";
 import PageLayout from "./pages/PageLayout.jsx";
 import AddPage from "./pages/AddPage.jsx";
 import MealOwnPage from "./pages/MealOwnPage.jsx";
+
+import API from "./api.js";
+import {ApiContext, UserContext} from "./contexts.js";
 
 const router = createBrowserRouter([{
     element: <PageLayout/>,
@@ -61,7 +61,7 @@ const App = () => {
     const saveUser = (user) => {
         setUser(user);
         localStorage.setItem("user", JSON.stringify(user));
-    }
+    };
 
     return (
         <ApiContext.Provider value={api}>

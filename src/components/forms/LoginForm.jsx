@@ -1,20 +1,20 @@
 import {useContext, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 
-import './Form.css'
-
 import {decodePassword} from './PasswordEncDec';
 import {UserContext} from "../../contexts.js";
 
-function LoginForm() {
+import './Form.css'
+
+const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const {user, setUser} = useContext(UserContext);
-    const userNavigate = useNavigate();
+    const navigate = useNavigate();
 
     if (user) {
-        userNavigate('/');
+        navigate('/');
     }
 
     const handleSubmit = async (event) => {
@@ -22,39 +22,39 @@ function LoginForm() {
 
         try {
             const response = await fetch(`http://localhost:3001/users?username=${username}`, {
-                method: 'GET',
-                headers: {
+                method: 'GET', headers: {
                     'Content-Type': 'application/json'
                 }
             });
 
-            if (response.ok) {
-                const userData = await response.json();
-
-                if (userData.length > 0) {
-                    const user = userData[0];
-                    const storedPassword = user.password;
-                    const decodedPassword = decodePassword(storedPassword);
-
-                    if (password === decodedPassword) {
-                        console.log('Login successful');
-                        setUser({
-                            id: user.id,
-                            username: user.username,
-                            liked_posts: user.liked_posts
-                        });
-                    } else {
-                        console.error('Incorrect password');
-                        alert('Incorrect password');
-                    }
-                } else {
-                    console.error('User does not exist');
-                    alert('User does not exist');
-                }
-            } else {
+            if (!response.ok) {
                 console.error('Login failed:', response.statusText);
                 alert('Login failed');
+                return;
             }
+
+            const userData = await response.json();
+
+            if (!userData) {
+                console.error('User does not exist');
+                alert('User does not exist');
+                return;
+            }
+
+            const user = userData[0];
+            const storedPassword = user.password;
+            const decodedPassword = decodePassword(storedPassword);
+
+            if (password !== decodedPassword) {
+                console.error('Incorrect password');
+                alert('Incorrect password');
+                return;
+            }
+
+            console.log('Login successful');
+            setUser({
+                id: user.id, username: user.username, liked_posts: user.liked_posts
+            });
         } catch (error) {
             console.error('Error logging in:', error);
             alert('Error logging in');
@@ -90,6 +90,6 @@ function LoginForm() {
             <p>Dont have an account? <Link to="/register">Register</Link></p>
         </div>
     );
-}
+};
 
 export default LoginForm;

@@ -1,6 +1,7 @@
 import {useContext} from "react";
-import {UserContext} from "../contexts.js";
 import {useNavigate} from "react-router-dom";
+
+import {UserContext} from "../contexts.js";
 import AddMealForm from "../components/add_meal_form/AddMealForm.jsx";
 
 const AddPage = () => {

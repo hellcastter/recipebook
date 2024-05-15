@@ -1,18 +1,19 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import './Form.css';
 
 import {encodePassword} from './PasswordEncDec';
 import {UserContext} from "../../contexts.js";
 
+import './Form.css';
+
 function RegisterForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const userNavigate = useNavigate();
+    const navigate = useNavigate();
 
     const {user, setUser} = useContext(UserContext);
     if (user) {
-        userNavigate('/');
+        navigate('/');
     }
 
     const handleSubmit = async (event) => {
@@ -21,31 +22,25 @@ function RegisterForm() {
         const encodedPassword = encodePassword(password);
 
         const formData = {
-            username: username,
-            password: encodedPassword
+            username: username, password: encodedPassword
         };
 
         try {
             const response = await fetch("http://localhost:3001/users", {
-                method: 'POST',
-                headers: {
+                method: 'POST', headers: {
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
+                }, body: JSON.stringify(formData)
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                // Redirect the user to the login page after successful registration
-                setUser({
-                    id: data.id,
-                    username: data.username,
-                    liked_posts: data.liked_posts
-                });
-            } else {
+            if (!response.ok) {
                 console.error('Failed to register user:', response.statusText);
-                // Handle error cases (e.g., display error message)
+                return;
             }
+
+            const data = await response.json();
+            setUser({
+                id: data.id, username: data.username, liked_posts: data.liked_posts
+            });
         } catch (error) {
             console.error('Error registering user:', error.message);
         }
@@ -80,6 +75,6 @@ function RegisterForm() {
             <p>Already have an account? <Link to="/Login">Login</Link></p>
         </div>
     );
-}
+};
 
 export default RegisterForm;

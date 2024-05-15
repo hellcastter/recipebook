@@ -1,13 +1,14 @@
-import 'react';
+import {useContext} from "react";
 import {Link} from 'react-router-dom';
 
 import Container from '../container/Container.jsx';
+import Search from '../search_component/Search.jsx';
+
+import {UserContext} from "../../contexts.js";
 
 import logo from '../../assets/logo.png';
+
 import './Header.css';
-import {useContext} from "react";
-import {UserContext} from "../../contexts.js";
-import Search from '../search_component/Search.jsx';
 
 const Header = () => {
     const {user, setUser} = useContext(UserContext);
@@ -31,7 +32,7 @@ const Header = () => {
                                 <>
                                     <li><Link to="/recipes">My Recipes</Link></li>
                                     <li><Link to="/add">Add Recipe</Link></li>
-                                    <li><Link onClick={() => setUser(null)}>Logout</Link></li>
+                                    <li><Link onClick={() => setUser(null)} to="/">Logout</Link></li>
                                 </> :
                                 <li><Link to="/login">Login</Link></li>
                         }
@@ -40,6 +41,6 @@ const Header = () => {
             </Container>
         </header>
     );
-}
+};
 
 export default Header;

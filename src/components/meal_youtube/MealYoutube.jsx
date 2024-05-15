@@ -17,7 +17,7 @@ const MealYoutube = ({title, strYoutube}) => {
             />
         </>
     );
-}
+};
 
 MealYoutube.propTypes = {
     title: PropTypes.string.isRequired,

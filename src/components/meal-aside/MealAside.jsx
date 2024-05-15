@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
-import DishItem from "../dish_item/DishItem.jsx";
 import PropTypes from "prop-types";
+
+import DishItem from "../dish_item/DishItem.jsx";
 
 const MealAside = ({data, randomMeal, randomIsLoading, own = false}) => {
     return (
@@ -9,7 +10,8 @@ const MealAside = ({data, randomMeal, randomIsLoading, own = false}) => {
 
             <div className="meal__tags">
                 {
-                    !own && <>
+                    !own &&
+                    <>
                         <Link className="meal__tag" to={`/category/${data.strCategory}`}>#{data.strCategory}</Link>
                         <Link className="meal__tag" to={`/country/${data.strArea}`}>#{data.strArea}</Link>
                     </>
@@ -17,13 +19,14 @@ const MealAside = ({data, randomMeal, randomIsLoading, own = false}) => {
 
                 {
                     data.strTags &&
-                    data.strTags.split(",")
-                        .filter((elem) => elem)
-                        .map((tag) => (
-                            <span key={tag} className="meal__tag">
+                        data.strTags
+                            .split(",")
+                            .filter((elem) => elem)
+                            .map((tag) => (
+                                <span key={tag} className="meal__tag">
                                     #{tag.trim()}
                                 </span>
-                        ))
+                            ))
                 }
             </div>
 
@@ -34,7 +37,7 @@ const MealAside = ({data, randomMeal, randomIsLoading, own = false}) => {
                     <DishItem id={randomMeal.idMeal} name={randomMeal.strMeal} thumb={randomMeal.strMealThumb}/>
             }
         </aside>
-    )
+    );
 };
 
 MealAside.propTypes = {
