@@ -1,118 +1,119 @@
-import { useContext, useEffect, useState } from 'react';
-import useSWR from 'swr';
+import React, {
+  useCallback, useContext, useEffect, useState,
+} from 'react';
 import ReactPaginate from 'react-paginate';
 
-import DishItem from "../components/dish_item/DishItem.jsx";
-import { UserContext } from "../contexts.js";
+import DishItem from '../components/dish_item/DishItem';
+import { UserContext } from '../contexts';
 
 import './Recipes.css';
 
-const perPage = 8;
+function Recipes() {
+  const perPage = 8;
 
-const fetcher = (url) => fetch(url).then(res => res.json());
+  const [offset1, setOffset1] = useState(0);
+  const [offset2, setOffset2] = useState(0);
+  const [pageCount1, setPageCount1] = useState(0);
+  const [pageCount2, setPageCount2] = useState(0);
+  const [postData1, setPostData1] = useState([]);
+  const [postData2, setPostData2] = useState([]);
 
-const usePaginatedData = (dataFetcher, dependencies) => {
-    const [offset, setOffset] = useState(0);
-    const [pageCount, setPageCount] = useState(0);
-    const [postData, setPostData] = useState([]);
+  const { user } = useContext(UserContext);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const data = await dataFetcher(offset, perPage);
-            setPageCount(Math.ceil(data.totalCount / perPage));
-            setPostData(data.items);
-        };
+  const fetchLikedPosts = useCallback(async () => {
+    if (user?.liked_posts) {
+      const likedPostsSlice = user.liked_posts.toReversed().slice(offset1, offset1 + perPage);
+      const data = await Promise.all(
+        likedPostsSlice.map((id) => (
+          fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+            .then((res) => res.json())
+            .then((datum) => datum.meals[0])
+        )),
+      );
 
-        fetchData();
-    }, [offset, ...dependencies]);
+      const postData = data.map((meal) => (
+        <DishItem
+          key={meal.idMeal}
+          id={meal.idMeal}
+          name={meal.strMeal}
+          thumb={meal.strMealThumb}
+        />
+      ));
 
-    const handlePageClick = (e) => {
-        const selectedPage = e.selected;
-        setOffset(selectedPage * perPage);
-    };
+      setPageCount1(Math.ceil(user.liked_posts.length / perPage));
+      setPostData1(postData);
+    }
+  }, [offset1, user]);
 
-    return { postData, pageCount, handlePageClick };
-};
+  const fetchUserRecipes = useCallback(async () => {
+    const response = await fetch(`http://localhost:3001/recipes?author_id=${user.id}`);
+    const userRecipes = await response.json();
 
-const Recipes = () => {
-    const { user } = useContext(UserContext);
-    const { data: allRecipes } = useSWR(`http://localhost:3001/recipes?author_id=${user.id}`, fetcher, { revalidateOnFocus: false });
+    const userRecipesSlice = userRecipes.slice(offset2, offset2 + perPage);
 
-    const fetchLikedPosts = async (offset, limit) => {
-        if (!user || !user.liked_posts) return { totalCount: 0, items: [] };
+    const postData = userRecipesSlice.map((meal) => (
+      <DishItem key={`own/${meal.id}`} id={`own/${meal.id}`} name={meal.strMeal} thumb={meal.strMealThumb} />
+    ));
 
-        const data = await Promise.all(
-            user.liked_posts
-                .slice(offset, offset + limit)
-                .map((id) => (
-                    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
-                        .then(res => res.json())
-                        .then(data => data.meals[0])
-                ))
-        );
+    setPageCount2(Math.ceil(userRecipes.length / perPage));
+    setPostData2(postData);
+  }, [offset2, user.id]);
 
-        return {
-            totalCount: user.liked_posts.length,
-            items: data.map(meal => (
-                <DishItem key={meal.idMeal} id={meal.idMeal} name={meal.strMeal} thumb={meal.strMealThumb} />
-            ))
-        };
-    };
+  const handlePageChange = (e, setter) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * perPage;
+    setter(offset);
+  };
 
-    const fetchUserRecipes = async (offset, limit) => {
-        if (!allRecipes || !user) return { totalCount: 0, items: [] };
+  useEffect(() => {
+    fetchLikedPosts();
+  }, [fetchLikedPosts]);
 
-        return {
-            totalCount: allRecipes.length,
-            items: allRecipes.slice(offset, offset + limit).map(meal => (
-                <DishItem key={`own/${meal.id}`} id={`own/${meal.id}`} name={meal.strMeal} thumb={meal.strMealThumb} />
-            ))
-        };
-    };
+  useEffect(() => {
+    fetchUserRecipes();
+  }, [fetchUserRecipes]);
 
-    const likedPosts = usePaginatedData(fetchLikedPosts, [user]);
-    const userRecipes = usePaginatedData(fetchUserRecipes, [allRecipes, user]);
+  return (
+    <div className="pagination-wrapper">
+      <h1>Liked recipes</h1>
+      <div className="wrap-postData">
+        {postData1}
+      </div>
+      <ReactPaginate
+        previousLabel="prev"
+        nextLabel="next"
+        breakLabel="..."
+        breakClassName="break-me"
+        pageCount={pageCount1}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={(e) => handlePageChange(e, setOffset1)}
+        containerClassName="pagination"
+        subContainerClassName="pages pagination"
+        activeClassName="active"
+      />
 
-    return (
-        <div className='pagination-wrapper'>
-            <h1>Liked recipes</h1>
-            <div className="wrap-postData">
-                {likedPosts.postData}
-            </div>
-            <ReactPaginate
-                previousLabel={"prev"}
-                nextLabel={"next"}
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={likedPosts.pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={likedPosts.handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"}
-            />
-            <div id="bottom-pd">
-                <h1>Added recipes</h1>
-                <div className="wrap-postData">
-                    {userRecipes.postData}
-                </div>
-            </div>
-            <ReactPaginate
-                previousLabel={"prev"}
-                nextLabel={"next"}
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={userRecipes.pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={userRecipes.handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"}
-            />
+      <div id="bottom-pd">
+        <h1>Added recipes</h1>
+        <div className="wrap-postData">
+          {postData2}
         </div>
-    );
-};
+      </div>
+      <ReactPaginate
+        previousLabel="prev"
+        nextLabel="next"
+        breakLabel="..."
+        breakClassName="break-me"
+        pageCount={pageCount2}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={(e) => handlePageChange(e, setOffset2)}
+        containerClassName="pagination"
+        subContainerClassName="pages pagination"
+        activeClassName="active"
+      />
+    </div>
+  );
+}
 
 export default Recipes;

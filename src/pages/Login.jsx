@@ -1,9 +1,11 @@
-import './App.css'
+import React from 'react';
 
-import LoginForm from "../components/forms/LoginForm.jsx"
+import LoginForm from '../components/forms/LoginForm';
 
-const Login = () => {
-    return <LoginForm/>;
-};
+import './App.css';
+
+function Login() {
+  return <LoginForm />;
+}
 
 export default Login;

@@ -7,11 +7,11 @@
     "dev": "npx json-server --watch ./data/db.json --port 3001 & vite --open",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "npx json-server --watch ./data/db.json --port 3001 & vite preview --open"
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.19.0",
-    "axios": "^1.6.8",
+    "concat-map": "^0.0.2",
     "json-server": "^1.0.0-alpha.23",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -31,6 +31,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "eslint-config-airbnb": "^19.0.4",
     "vite": "^5.2.0"
   }
 }

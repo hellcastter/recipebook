@@ -1,22 +1,24 @@
-import CategoriesList from "../components/categories_list/CategoriesList.jsx";
-import CountriesList from "../components/countries_list/CountriesList.jsx";
-import RandomList from "../components/random_list/RandomList.jsx";
+import React from 'react';
 
-import hero from "../assets/hero.jpg";
+import CategoriesList from '../components/categories_list/CategoriesList';
+import CountriesList from '../components/countries_list/CountriesList';
+import RandomList from '../components/random_list/RandomList';
 
-import './App.css'
+import hero from '../assets/hero.jpg';
 
-const Home = () => {
-    return (
-        <>
-            <img src={hero} alt="hero" className="hero"/>
+import './App.css';
 
-            <CategoriesList/>
-            <CountriesList/>
+function Home() {
+  return (
+    <>
+      <img src={hero} alt="hero" className="hero" />
 
-            <RandomList items={10}/>
-        </>
-    );
-};
+      <CategoriesList />
+      <CountriesList />
+
+      <RandomList items={10} />
+    </>
+  );
+}
 
 export default Home;

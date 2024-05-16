@@ -1,17 +1,20 @@
-import {Outlet} from "react-router-dom";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-import Footer from "../components/footer/Footer.jsx";
-import Header from "../components/header/Header.jsx";
-import Container from "../components/container/Container.jsx";
+import Footer from '../components/footer/Footer';
+import Header from '../components/header/Header';
+import Container from '../components/container/Container';
 
-const PageLayout = () => (
+function PageLayout() {
+  return (
     <main className="page">
-        <Container>
-            <Header/>
-            <Outlet/>
-        </Container>
-        <Footer/>
+      <Container>
+        <Header />
+        <Outlet />
+      </Container>
+      <Footer />
     </main>
-);
+  );
+}
 
 export default PageLayout;
